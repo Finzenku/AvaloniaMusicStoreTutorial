@@ -49,7 +49,7 @@ namespace MusicStore
                 ));
             services.AddSingleton<IAlbumSearchService, iTunesAlbumSearchService>();
             services.AddSingleton<IAlbumDataService, JsonAlbumDataService>();
-            services.AddTransient<IAlbumCoverService, AlbumCoverService>();
+            services.AddTransient<IAlbumCoverService, HttpAlbumCoverService>();
             services.AddSingleton<IAlbumViewModelFactory, AlbumViewModelFactory>();
 
             // HttpClients

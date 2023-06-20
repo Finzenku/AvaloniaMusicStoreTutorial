@@ -8,7 +8,7 @@ using Avalonia.Media.Imaging;
 
 namespace MusicStore.Services
 {
-    public class AlbumCoverService : IAlbumCoverService
+    public class HttpAlbumCoverService : IAlbumCoverService
     {
         private static string? BasePath = Path.GetDirectoryName(AppContext.BaseDirectory);
         private static char[] InvalidChars = Path.GetInvalidFileNameChars();
@@ -24,7 +24,7 @@ namespace MusicStore.Services
 
         private IHttpClientFactory _httpClientFactory;
 
-        public AlbumCoverService(IHttpClientFactory httpClientFactory)
+        public HttpAlbumCoverService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
