@@ -5,16 +5,23 @@ using System.Threading.Tasks;
 
 namespace MusicStore.Services
 {
-    public static class AlbumViewModelFactory
+    public class AlbumViewModelFactory : IAlbumViewModelFactory
     {
-        public static async Task<AlbumViewModel> CreateAsync(Album album)
+        private IAlbumCoverService _albumCoverService;
+
+        public AlbumViewModelFactory(IAlbumCoverService albumCoverService)
+        {
+            _albumCoverService = albumCoverService;
+        }
+
+        public async Task<AlbumViewModel> CreateAsync(Album album)
         {
             var viewModel = new AlbumViewModel(album);
             await LoadCoverAsync(viewModel);
             return viewModel;
         }
 
-        private static async Task LoadCoverAsync(AlbumViewModel viewModel)
+        private async Task LoadCoverAsync(AlbumViewModel viewModel)
         {
             var albumCoverService = App.Services.GetService<IAlbumCoverService>();
             if (albumCoverService is not null)

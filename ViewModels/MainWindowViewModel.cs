@@ -13,6 +13,7 @@ namespace MusicStore.ViewModels
 
         private IDialogService? _dialogService;
         private IAlbumDataService? _albumDataService;
+        private IAlbumViewModelFactory? _albumViewModelFactory;
 
         #endregion
 
@@ -29,10 +30,11 @@ namespace MusicStore.ViewModels
             Albums = new();
         }
 
-        public MainWindowViewModel(IDialogService dialogService, IAlbumDataService albumDataService) : this()
+        public MainWindowViewModel(IDialogService dialogService, IAlbumDataService albumDataService, IAlbumViewModelFactory albumViewModelFactory) : this()
         {
             _dialogService = dialogService;
             _albumDataService = albumDataService;
+            _albumViewModelFactory = albumViewModelFactory;
             _ = LoadAlbumsAsync();
         }
 
@@ -42,9 +44,9 @@ namespace MusicStore.ViewModels
 
         private async Task LoadAlbumsAsync()
         {
-            if (_albumDataService is not null)
+            if (_albumDataService is not null && _albumViewModelFactory is not null)
                 foreach (var album in _albumDataService.LoadAlbums())
-                    Albums.Add(await AlbumViewModelFactory.CreateAsync(album));
+                    Albums.Add(await _albumViewModelFactory.CreateAsync(album));
         }
 
         #endregion

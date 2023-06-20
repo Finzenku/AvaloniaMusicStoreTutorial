@@ -23,6 +23,7 @@ namespace MusicStore.ViewModels
 
         private IDialogService? _dialogService;
         private IAlbumSearchService? _searchService;
+        private IAlbumViewModelFactory? _albumViewModelFactory;
         private System.Timers.Timer _searchTimer;
         private CancellationTokenSource _cts;
 
@@ -58,10 +59,11 @@ namespace MusicStore.ViewModels
             PropertyChanged += OnPropertyChanged;
         }
 
-        public MusicStoreViewModel(IDialogService dialogService, IAlbumSearchService searchService) : this()
+        public MusicStoreViewModel(IDialogService dialogService, IAlbumSearchService searchService, IAlbumViewModelFactory albumViewModelFactory) : this()
         {
             _dialogService = dialogService;
             _searchService = searchService;
+            _albumViewModelFactory = albumViewModelFactory;
         }
 
         #endregion
@@ -99,12 +101,12 @@ namespace MusicStore.ViewModels
             IsBusy = true;
             SearchResults.Clear();
             await foreach (Album album in _searchService.SearchAsync(SearchText, _cts.Token))
-                SearchResults.Add(await AlbumViewModelFactory.CreateAsync(album));
+                SearchResults.Add(await _albumViewModelFactory!.CreateAsync(album));
             IsBusy = false;
         }
 
         // We can't search if our SearchText is blank and we don't want to start another search while another is still processing
-        private bool CanSearchAlbums() => !string.IsNullOrWhiteSpace(SearchText) && !IsBusy;
+        private bool CanSearchAlbums() => !string.IsNullOrWhiteSpace(SearchText) && !IsBusy &&  _albumViewModelFactory is not null;
 
         [RelayCommand(CanExecute = nameof(CanBuyMusic))]
         private void BuyMusic()
