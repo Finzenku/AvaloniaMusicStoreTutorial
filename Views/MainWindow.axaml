@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MusicStore.ViewModels"
+		xmlns:local="using:MusicStore.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="650"
+        x:Class="MusicStore.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/musicstore.ico"
+        Title="MusicStore"
+		WindowStartupLocation="CenterScreen"
+		Background="{DynamicResource ResourceKey=SemiSolidBlackBrush}"
+		TransparencyLevelHint="Mica"
+		ExtendClientAreaToDecorationsHint="True"
+		>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Panel>
+		<Button Margin="40"
+				Width="40"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Top"
+				Padding="4"
+				Command="{Binding BuyMusicCommand}">
+			<Svg Path="/Assets/musicstore.svg"/>
+		</Button>
+
+		<ItemsControl Margin="50" ItemsSource="{Binding Albums}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<local:AlbumView Margin="5"/>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+			
+		</ItemsControl>
+	</Panel>
+
+</Window>
