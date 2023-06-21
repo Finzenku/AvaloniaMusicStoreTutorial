@@ -65,6 +65,13 @@ namespace MusicStore.ViewModels
             }
         }
 
+        [RelayCommand]
+        private void ResetLibrary()
+        {
+            Albums.Clear();
+            _albumDataService?.SaveAlbums(Albums.Select(a => a.Album).ToList());
+        }
+
         #endregion
     }
 }

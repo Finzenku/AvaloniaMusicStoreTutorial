@@ -29,6 +29,13 @@
 			<Svg Path="/Assets/musicstore.svg"/>
 		</Button>
 
+		<Button Margin="0, 40"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Top"
+				Command="{Binding ResetLibraryCommand}">
+			X
+		</Button>
+
 		<ItemsControl Margin="50" ItemsSource="{Binding Albums}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
