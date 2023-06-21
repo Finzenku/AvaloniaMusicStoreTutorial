@@ -92,8 +92,11 @@ namespace MusicStore.ViewModels
         #region Relay Commands
 
         [RelayCommand(CanExecute = nameof(CanSearchAlbums))]
-        private async Task SearchAlbumsAsync()
+        private async Task SearchAlbumsAsync(CancellationToken? token = null)
         {
+            if (token is null)
+                token = _cts.Token;
+
             // If this method was called via the RelayCommand, we want to make sure to stop the timer so it doesn't trigger again
             _searchTimer.Stop();
 
@@ -103,7 +106,7 @@ namespace MusicStore.ViewModels
 
             IsBusy = true;
             SearchResults.Clear();
-            await foreach (Album album in _searchService.SearchAsync(SearchText, _cts.Token))
+            await foreach (Album album in _searchService.SearchAsync(SearchText, token))
                 SearchResults.Add(await _albumViewModelFactory!.CreateAsync(album));
             IsBusy = false;
         }

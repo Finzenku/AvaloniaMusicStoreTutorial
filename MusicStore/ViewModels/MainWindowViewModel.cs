@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MusicStore.Interfaces;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MusicStore.ViewModels
@@ -53,11 +55,19 @@ namespace MusicStore.ViewModels
         #region Relay Commands
 
         [RelayCommand]
-        private async Task BuyMusicAsync()
+        private async Task BuyMusicAsync(CancellationToken? token = null)
         {
             if (_viewDialogService is null)
                 return;
-            var album = await _viewDialogService.ShowDialogAsync(this);
+            AlbumViewModel? album = null;
+            try
+            {
+                album = await _viewDialogService.ShowDialogAsync(this, token);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
             if (album is not null)
             {
                 Albums.Add(album);

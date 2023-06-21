@@ -1,6 +1,7 @@
 ﻿using HanumanInstitute.MvvmDialogs;
 using MusicStore.Interfaces;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MusicStore.Services
@@ -14,8 +15,9 @@ namespace MusicStore.Services
             _dialogService = dialogService;
         }
 
-        public async Task<TResult?> ShowDialogAsync(INotifyPropertyChanged ownerViewModel)
+        public async Task<TResult?> ShowDialogAsync(INotifyPropertyChanged ownerViewModel, CancellationToken? token = null)
         {
+            token?.ThrowIfCancellationRequested();
             var viewModel = _dialogService.CreateViewModel<TDialogViewModel>();
             await _dialogService.ShowDialogAsync(ownerViewModel, viewModel).ConfigureAwait(true);
             return viewModel.DialogResultObject;
