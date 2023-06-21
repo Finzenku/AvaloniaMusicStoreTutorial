@@ -17,8 +17,8 @@ namespace MusicStore.Tests.ViewModels
 
         public static IEnumerable<object?[]> GetAlbumViewModels()
         {
-            yield return new object?[] { new AlbumViewModel(testAlbum) };
-            yield return new object?[] { null };
+            yield return new object?[] { new AlbumViewModel(testAlbum), true };
+            yield return new object?[] { null, false };
         }
 
         static MainWindowViewModelTests()
@@ -39,7 +39,7 @@ namespace MusicStore.Tests.ViewModels
 
         [Theory]
         [MemberData(nameof(GetAlbumViewModels))]
-        public async Task MainWindowViewModel_BuyMusicCommand(AlbumViewModel? dialogResult)
+        public async Task MainWindowViewModel_BuyMusicCommand(AlbumViewModel? dialogResult, bool resultFound)
         {
             // Arrange
             A.CallTo(() => viewDialogService.ShowDialogAsync(viewModel, null)).Returns(dialogResult);
@@ -50,7 +50,7 @@ namespace MusicStore.Tests.ViewModels
 
             // Assert
             viewModel.Albums.Should().AllBeOfType<AlbumViewModel>();
-            viewModel.Albums.Should().HaveCountGreaterThanOrEqualTo(albumCount);
+            viewModel.Albums.Should().HaveCount(albumCount + (resultFound ? 1 : 0));
         }
 
         [Fact]
