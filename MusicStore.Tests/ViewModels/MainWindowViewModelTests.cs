@@ -42,7 +42,7 @@ namespace MusicStore.Tests.ViewModels
         public async Task MainWindowViewModel_BuyMusicCommand(AlbumViewModel? dialogResult)
         {
             // Arrange
-            A.CallTo(() => viewDialogService.ShowDialogAsync(viewModel)).Returns(dialogResult);
+            A.CallTo(() => viewDialogService.ShowDialogAsync(viewModel, null)).Returns(dialogResult);
             int albumCount = viewModel.Albums.Count();
 
             // Act
