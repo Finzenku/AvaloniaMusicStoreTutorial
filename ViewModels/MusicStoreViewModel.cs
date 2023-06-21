@@ -33,7 +33,7 @@ namespace MusicStore.ViewModels
 
         // Determines whether the associated window closed with a result or with nothing
         public bool? DialogResult { get; private set; }
-        public AlbumViewModel? DialogResultObject => SelectedAlbum;
+        public AlbumViewModel? DialogResultObject => DialogResult??false ? SelectedAlbum : null;
 
         public ObservableCollection<AlbumViewModel> SearchResults { get; } = new();
 
