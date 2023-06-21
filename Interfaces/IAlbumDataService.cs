@@ -1,7 +1,7 @@
 ﻿using MusicStore.Models;
 using System.Collections.Generic;
 
-namespace MusicStore.Services
+namespace MusicStore.Interfaces
 {
     public interface IAlbumDataService
     {

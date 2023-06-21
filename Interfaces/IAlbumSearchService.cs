@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MusicStore.Services
+namespace MusicStore.Interfaces
 {
     public interface IAlbumSearchService
     {

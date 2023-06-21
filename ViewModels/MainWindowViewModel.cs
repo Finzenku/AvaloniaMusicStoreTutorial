@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using HanumanInstitute.MvvmDialogs;
+using MusicStore.Interfaces;
 using MusicStore.Services;
 using System.Collections.ObjectModel;
 using System.Linq;

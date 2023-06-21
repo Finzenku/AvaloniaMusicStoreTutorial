@@ -2,7 +2,7 @@
 using MusicStore.ViewModels;
 using System.Threading.Tasks;
 
-namespace MusicStore.Services
+namespace MusicStore.Interfaces
 {
     public interface IAlbumViewModelFactory
     {

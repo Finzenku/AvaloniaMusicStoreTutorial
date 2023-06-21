@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HanumanInstitute.MvvmDialogs;
+using MusicStore.Interfaces;
 using MusicStore.Models;
 using MusicStore.Services;
 using System.Collections.ObjectModel;

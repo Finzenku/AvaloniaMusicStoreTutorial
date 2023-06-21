@@ -1,4 +1,5 @@
 ﻿using iTunesSearch.Library;
+using MusicStore.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 

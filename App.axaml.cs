@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
 using Microsoft.Extensions.DependencyInjection;
+using MusicStore.Interfaces;
 using MusicStore.Services;
 using MusicStore.ViewModels;
 using MusicStore.Views;

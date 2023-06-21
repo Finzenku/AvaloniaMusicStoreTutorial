@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
 using Avalonia.Media.Imaging;
+using MusicStore.Interfaces;
 
 namespace MusicStore.Services
 {
