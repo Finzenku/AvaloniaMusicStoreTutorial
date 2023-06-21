@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using HanumanInstitute.MvvmDialogs;
 using MusicStore.Interfaces;
-using MusicStore.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +10,7 @@ namespace MusicStore.ViewModels
     {
         #region Private Members
 
-        private IDialogService? _dialogService;
+        private IViewDialog<AlbumViewModel>? _viewDialogService;
         private IAlbumDataService? _albumDataService;
         private IAlbumViewModelFactory? _albumViewModelFactory;
 
@@ -31,9 +29,9 @@ namespace MusicStore.ViewModels
             Albums = new();
         }
 
-        public MainWindowViewModel(IDialogService dialogService, IAlbumDataService albumDataService, IAlbumViewModelFactory albumViewModelFactory) : this()
+        public MainWindowViewModel(IViewDialog<AlbumViewModel> viewDialogService, IAlbumDataService albumDataService, IAlbumViewModelFactory albumViewModelFactory) : this()
         {
-            _dialogService = dialogService;
+            _viewDialogService = viewDialogService;
             _albumDataService = albumDataService;
             _albumViewModelFactory = albumViewModelFactory;
             _ = LoadAlbumsAsync();
@@ -57,9 +55,9 @@ namespace MusicStore.ViewModels
         [RelayCommand]
         private async Task BuyMusicAsync()
         {
-            if (_dialogService is null)
+            if (_viewDialogService is null)
                 return;
-            var album = await _dialogService.ShowMusicStoreWindowAsync(this);
+            var album = await _viewDialogService.ShowDialogAsync(this);
             if (album is not null)
             {
                 Albums.Add(album);

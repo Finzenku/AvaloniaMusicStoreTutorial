@@ -52,6 +52,7 @@ namespace MusicStore
             services.AddSingleton<IAlbumDataService, JsonAlbumDataService>();
             services.AddTransient<IAlbumCoverService, HttpAlbumCoverService>();
             services.AddSingleton<IAlbumViewModelFactory, AlbumViewModelFactory>();
+            services.AddTransient<IViewDialog<AlbumViewModel>, MusicStoreViewDialog>();
 
             // HttpClients
             services.AddHttpClient("itunes"); // IHttpClientFactory

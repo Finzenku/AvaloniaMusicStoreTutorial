@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using HanumanInstitute.MvvmDialogs;
 using MusicStore.Interfaces;
 using MusicStore.Models;
-using MusicStore.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
@@ -12,7 +11,7 @@ using System.Timers;
 
 namespace MusicStore.ViewModels
 {
-    public partial class MusicStoreViewModel : ViewModelBase, IModalDialogViewModel
+    public partial class MusicStoreViewModel : ViewModelBase, IResultDialogViewModel<AlbumViewModel>
     {
         #region Constants
 
@@ -34,7 +33,10 @@ namespace MusicStore.ViewModels
 
         // Determines whether the associated window closed with a result or with nothing
         public bool? DialogResult { get; private set; }
+        public AlbumViewModel? DialogResultObject => SelectedAlbum;
+
         public ObservableCollection<AlbumViewModel> SearchResults { get; } = new();
+
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(BuyMusicCommand))]
