@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MusicStore.Interfaces;
+﻿using MusicStore.Interfaces;
 using MusicStore.Models;
 using MusicStore.ViewModels;
 using System.Threading.Tasks;
@@ -24,11 +23,7 @@ namespace MusicStore.Services
 
         private async Task LoadCoverAsync(AlbumViewModel viewModel)
         {
-            var albumCoverService = App.Services.GetService<IAlbumCoverService>();
-            if (albumCoverService is not null)
-            {
-                viewModel.Cover = await albumCoverService.LoadCoverBitmapAsync(viewModel.Album);
-            }
+            viewModel.Cover = await _albumCoverService.LoadCoverBitmapAsync(viewModel.Album);
         }
     }
 }
