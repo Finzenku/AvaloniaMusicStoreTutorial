@@ -21,11 +21,11 @@ namespace MusicStore.ViewModels
 
         #region Private Members
 
-        private IDialogService? _dialogService;
-        private IAlbumSearchService? _searchService;
-        private IAlbumViewModelFactory? _albumViewModelFactory;
-        private System.Timers.Timer _searchTimer;
-        private CancellationTokenSource _cts;
+        private readonly IDialogService? _dialogService;
+        private readonly IAlbumSearchService? _searchService;
+        private readonly IAlbumViewModelFactory? _albumViewModelFactory;
+        private readonly System.Timers.Timer _searchTimer;
+        private readonly CancellationTokenSource _cts;
 
         #endregion
 

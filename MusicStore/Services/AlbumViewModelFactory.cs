@@ -7,7 +7,7 @@ namespace MusicStore.Services
 {
     public class AlbumViewModelFactory : IAlbumViewModelFactory
     {
-        private IAlbumCoverService _albumCoverService;
+        private readonly IAlbumCoverService _albumCoverService;
 
         public AlbumViewModelFactory(IAlbumCoverService albumCoverService)
         {

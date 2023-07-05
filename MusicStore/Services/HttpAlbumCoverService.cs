@@ -23,7 +23,7 @@ namespace MusicStore.Services
             }
         }
 
-        private IHttpClientFactory _httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
 
         public HttpAlbumCoverService(IHttpClientFactory httpClientFactory)
         {

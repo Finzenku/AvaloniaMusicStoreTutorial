@@ -7,7 +7,7 @@ namespace MusicStore.Services
 {
     public class iTunesAlbumSearchService : IAlbumSearchService
     {
-        private iTunesSearchManager _searchManager;
+        private readonly iTunesSearchManager _searchManager;
 
         public iTunesAlbumSearchService()
         {

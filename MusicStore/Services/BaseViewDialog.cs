@@ -8,7 +8,7 @@ namespace MusicStore.Services
 {
     internal class BaseViewDialog<TResult, TDialogViewModel> : IViewDialog<TResult> where TDialogViewModel : IResultDialogViewModel<TResult>
     {
-        IDialogService _dialogService;
+        readonly IDialogService _dialogService;
 
         public BaseViewDialog(IDialogService dialogService)
         {

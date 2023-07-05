@@ -12,9 +12,9 @@ namespace MusicStore.ViewModels
     {
         #region Private Members
 
-        private IViewDialog<AlbumViewModel>? _viewDialogService;
-        private IAlbumDataService? _albumDataService;
-        private IAlbumViewModelFactory? _albumViewModelFactory;
+        private readonly IViewDialog<AlbumViewModel>? _viewDialogService;
+        private readonly IAlbumDataService? _albumDataService;
+        private readonly IAlbumViewModelFactory? _albumViewModelFactory;
 
         #endregion
 
