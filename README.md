@@ -1,6 +1,6 @@
 # Avalonia Music Store App
 
-An amateur's take on the [AvaloniaUI Music Store App Tutorial](https://docs.avaloniaui.net/tutorials/music-store-app) project 
+An amateur's take on the [AvaloniaUI Music Store App Tutorial](https://docs.avaloniaui.net/docs/next/tutorials/music-store-app/) project 
 using [Microsoft's CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/) framework.   
 
 ## CommunityToolkit
@@ -10,7 +10,7 @@ since it now comes as an MVVM framework option for new [Avalonia projects](https
 It cuts out a lot of the boilerplate code that the tutorial uses, 
 but libraries like [ReactiveUI.Fody](https://github.com/kswoll/ReactiveUI.Fody) can help with that too.  
 
-I have used [Avalonia with ReactiveUI](https://docs.avaloniaui.net/guides/deep-dives/reactiveui) in the past but never to an advanced level.
+I have used [Avalonia with ReactiveUI](https://docs.avaloniaui.net/docs/next/concepts/reactiveui/) in the past but never to an advanced level.
 
 
 ## Inversion of Control
