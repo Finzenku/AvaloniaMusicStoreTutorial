@@ -16,7 +16,6 @@ namespace MusicStore
     public partial class App : Application
     {
         private readonly IServiceProvider _services = ConfigureServices();
-        public static IServiceProvider Services => ((App)Current!)._services;
 
         public override void Initialize()
         {
@@ -30,7 +29,10 @@ namespace MusicStore
                 // Line below is needed to remove Avalonia data validation.
                 // Without this line you will get duplicate validations from both Avalonia and CT
                 BindingPlugins.DataValidators.RemoveAt(0);
-                desktop.MainWindow = Services.GetRequiredService<MainWindow>();
+                desktop.MainWindow = new MainWindow()
+                {
+                    DataContext = _services.GetRequiredService<MainWindowViewModel>()
+                };
             }
 
             base.OnFrameworkInitializationCompleted();
@@ -41,12 +43,12 @@ namespace MusicStore
             var services = new ServiceCollection();
 
             // Services
-            services.AddSingleton<IDialogService>((_) => new DialogService(
+            services.AddSingleton<IDialogService>(serviceProvider => new DialogService(
                 new DialogManager
                 (
                     viewLocator: new ViewLocator(), 
                     dialogFactory: new DialogFactory()), 
-                    viewModelFactory: x => Services.GetService(x)
+                    viewModelFactory: viewModelType => serviceProvider.GetService(viewModelType)
                 ));
             services.AddSingleton<IAlbumSearchService, iTunesAlbumSearchService>();
             services.AddSingleton<IAlbumDataService, JsonAlbumDataService>();
@@ -60,11 +62,6 @@ namespace MusicStore
             // ViewModels
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<MusicStoreViewModel>();
-            services.AddTransient<AlbumViewModel>();
-
-            // Views
-            services.AddSingleton<MainWindow>(p => new(p.GetRequiredService<MainWindowViewModel>()));
-            services.AddTransient<MusicStoreView>(p => new(p.GetRequiredService<MusicStoreViewModel>()));
 
             return services.BuildServiceProvider();
         }

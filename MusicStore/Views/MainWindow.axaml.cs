@@ -8,10 +8,5 @@ namespace MusicStore.Views
         {
             InitializeComponent();
         }
-
-        public MainWindow(object? dataContext) : this()
-        {
-            DataContext = dataContext;
-        }
     }
 }

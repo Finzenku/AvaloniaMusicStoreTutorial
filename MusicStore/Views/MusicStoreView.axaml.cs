@@ -13,11 +13,6 @@ public partial class MusicStoreView : Window
         _searchBox = this.FindControl<TextBox>("SearchBox") ?? throw new Exception("Cannot find SearchBox by name");
     }
 
-    public MusicStoreView(object? dataContext) : this()
-    {
-        DataContext = dataContext;
-    }
-
     private void WindowOpened(object? sender, EventArgs e)
     {
         _searchBox.Focus();
